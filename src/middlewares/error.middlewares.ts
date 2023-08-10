@@ -1,3 +1,5 @@
+// Nesse arquivo estamos tratando os possíveis erros ao realizar a troca de informações pela url
+
 import { NextFunction, Request, Response } from "express";
 import { HttpException } from "../interfaces/HttpsExceptions";
 

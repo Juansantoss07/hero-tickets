@@ -1,9 +1,13 @@
 import express, { Application, urlencoded } from "express"; 
 import { connect } from "./infra/database";
 import { errorMiddleware } from "./middlewares/error.middlewares";
+import { EventRoutes } from "../routes/events.routes";
 
 class App {
+
     public app: Application;
+    private eventRoutes = new EventRoutes();
+
     constructor() {
         // No contrutor devemos nos atentar para chamar as funções na ordem correta
         this.app = express();
@@ -13,7 +17,8 @@ class App {
         connect();
     }
     initializeRoutes(){
-        //this.app.use('/', );
+        // Tudo que usa o método "use" serve para interceptarmos
+        this.app.use('/events', this.eventRoutes.router);
     }
 
     interceptionErrors(){
